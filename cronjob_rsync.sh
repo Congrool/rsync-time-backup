@@ -1,4 +1,15 @@
 #!/bin/bash
+
+# Usage:
+# crontab -e
+# Then add the following commands:
+# 
+# Periodically check if backup disk is umounted
+# */30 0,7-23 * * * ${PROJECT_ROOT}/cronjob_rsync.sh umount_dev 2>&1 >> /tmp/backup_umount.log
+#
+# do backup
+# 0 1 * * * timeout 6h ${PROJECT_ROOT}/cronjob_rsync.sh rsync 2>&1 >> /tmp/backup_rsync.log
+
 CMDDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 ROOTBACKUPDIR="/mnt/backup/root"
 HOMEBACKUPDIR="/mnt/backup/home"
